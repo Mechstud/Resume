@@ -1,0 +1,143 @@
+% MadhurBhaiya-Resume.tex
+%
+% ATS-safe, single-column resume in LaTeX. Built to parse cleanly on
+% Greenhouse / Lever / Workday while still rendering well visually.
+%
+% Hard rules followed throughout:
+%   - No multi-column tables (tabular*/tabular) used for layout
+%   - No colorbox/minipage section headings
+%   - Dates kept on the same line as titles via \hfill (single column)
+%   - T1 fontenc + lmodern so copy-paste yields clean Unicode
+%   - Plain-text URLs; \href display text == URL
+%   - Standard itemize/enumerate; no spacing tricks that drop blank lines
+
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage[empty]{fullpage}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[hidelinks]{hyperref}
+\usepackage{enumitem}
+
+% Margins
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1.0in}
+\addtolength{\topmargin}{-0.5in}
+\addtolength{\textheight}{1.0in}
+
+\raggedbottom
+\raggedright
+\pagestyle{empty}
+
+% Compact list spacing without breaking parser blank-line separators
+\setlist[itemize]{leftmargin=*, itemsep=1pt, topsep=2pt, parsep=0pt}
+\setlist[enumerate]{leftmargin=*, itemsep=1pt, topsep=2pt, parsep=0pt}
+
+% Section heading: plain bold text + underline rule. ATS-safe.
+\newcommand{\resheading}[1]{%
+  \vspace{8pt}%
+  {\large\textbf{#1}}\par%
+  \vspace{2pt}\hrule\vspace{4pt}%
+}
+
+% Role line: title left, dates right via \hfill (single column, not a table)
+\newcommand{\resrole}[4]{%
+  \textbf{#1} \hfill #2 \\%
+  \textit{#3} \hfill \textit{#4}\par\vspace{2pt}%
+}
+
+\begin{document}
+
+% ============ HEADER ============
+\begin{center}
+{\LARGE\textbf{MADHUR BHAIYA}}\\[4pt]
+Jaipur, India\\
++91 72210 63279 / +91 93529 87598 \ \textbar\ \href{mailto:madhurbhaiya@gmail.com}{madhurbhaiya@gmail.com} \ \textbar\ \href{https://linkedin.com/in/madhurbhaiya}{linkedin.com/in/madhurbhaiya}
+\end{center}
+
+% ============ SUMMARY ============
+\resheading{Summary}
+
+Hands-on technology leader with 15+ years building production systems, now focused on \textbf{Gen AI applications}. Shipped a \textbf{natural-language-to-SQL} system on top of LLMs using \textbf{prompt engineering} (one-shot / few-shot exemplar selection), \textbf{retrieval-augmented generation (RAG)} over a schema catalog, and \textbf{semantic caching}. Strong backend (Golang, Python, PHP); deep \textbf{SQL/DBA} expertise on relational databases at scale (Postgres, MySQL, query optimization, replication, sharding, ProxySQL, distributed systems); full infrastructure ownership (Linux server administration, Nginx/Apache, Jenkins, GitHub Actions, Ansible). Built and led engineering teams from scratch across two ventures.
+
+% ============ SKILLS ============
+\resheading{Skills}
+
+\begin{itemize}
+  \item \textbf{Gen AI / LLM}: Prompt engineering, one-shot and few-shot, retrieval-augmented generation (RAG), semantic caching, natural-language-to-SQL (NL2SQL), schema catalog modeling, LLM output guardrails / policy enforcement, self-correction loops, evaluation harnesses, Spec-Driven Development, LLM-assisted development workflows
+  \item \textbf{Languages}: Go (Golang), Python, PHP, JavaScript, TypeScript, SQL, C++
+  \item \textbf{Frameworks and Data}: ReactJS, Postgres, MySQL, ProxySQL, Qdrant (vector DB), Apache SOLR, Elasticsearch, RabbitMQ
+  \item \textbf{Infrastructure and DevOps}: Linux, Nginx, Apache, Jenkins, GitHub Actions, Ansible, Git
+\end{itemize}
+
+% ============ EXPERIENCE ============
+\resheading{Experience}
+
+\resrole{Chief Technology Officer}{September 2020 -- Present}{KDK Softwares}{Jaipur, India}
+\begin{itemize}
+  \item Designed and shipped a \textbf{natural-language-to-SQL} system for a multi-tenant tax-compliance SaaS --- an LLM-powered interface that lets non-technical users ask queries on their tax data. Owned end-to-end: architecture, prompt design, retrieval pipeline, security/policy layer, evaluation, rollout.
+  \item Built a \textbf{schema catalog} as the policy-and-context SSoT (table ownership, multi-tenant scopes, column metadata, value enumerations, join hints); per-request \textbf{RAG over Qdrant} (top-K retrieval + FK-chain anchor expansion) shrinks the per-request schema prompt from $\sim$12k to $\sim$3--5k tokens while preserving the static rules prefix for OpenAI prompt caching.
+  \item Authored \textbf{sqlguard}, a custom Go AST-walker (vitess sqlparser) that enforces 12+ policy rules on every LLM-emitted query before execution --- SELECT-only, table whitelist, multi-scope \textbf{tenant-isolation verification} including FK-inherited tenancy via JOIN-tree walking, sensitive-column blocks, bind-parameter capture, LIMIT and MAX\_EXECUTION\_TIME injection. Defense-in-depth treating the LLM as untrusted; tenant identity is never read from the NL payload or LLM output.
+  \item Implemented \textbf{few-shot exemplar selection} + a \textbf{semantic Q-to-SQL cache} in Qdrant (per-tenant filtered, sqlguard re-validates on every hit, promoted from thumbs-up feedback) plus a single-retry \textbf{self-correction loop} on eligible policy rejections. Built a structural \textbf{evaluation harness} that tracks every prompt/model revision as a measurable delta against a frozen golden set. Stack: Go, Qdrant, OpenAI.
+  \item Rolled out \textbf{LLM-assisted development workflows} across a 25-engineer org centered on \textbf{Spec-Driven Development} --- engineers author detailed, reviewable specs that LLMs use to generate consistent code and tests --- shifting AI use from ad-hoc prompting to a repeatable, production-grade engineering practice.
+  \item Founded the cloud SaaS engineering practice in a previously desktop-only company; cloud offerings now serve \textbf{10,000+ paying customers} across India. Built \textbf{five large-scale tax-compliance SaaS products} from scratch (ExpressGST, ExpressTDS, ExpressITR, ExpressReco, SpectrumCloud) plus internal CRM/admin systems. Led the \textbf{PHP (Laravel) to Golang} backend migration at production scale and upskilled engineers through the transition; hands-on across the stack --- production Go and Python, deep SQL/DBA work (query optimization, replication, ProxySQL), React frontends, full DevOps ownership.
+\end{itemize}
+
+\resrole{Co-Founder and Director}{April 2015 -- September 2020}{Wholesalebox.in}{Jaipur, India}
+\begin{itemize}
+  \item Built the complete technology stack of \textbf{wholesalebox.in}, a B2B e-commerce platform (raised pre-Series A funding) --- customer-facing web and mobile (separate codebases), Android and iOS apps, internal CRM and admin, seller-facing apps, B2C retailer storefronts.
+  \item Scaled the business from zero to a \textbf{200+ employee team} including \textbf{40+ engineers}, with thousands of active retailers (customers) across India.
+  \item Stack: PHP, MySQL, Postgres, ReactJS, React Native, Apache SOLR, Elasticsearch, RabbitMQ, Scala, Python, Nginx, Apache.
+\end{itemize}
+
+\resrole{Application Specialist, Remote Automation Solutions}{April 2014 -- July 2015}{Emerson (formerly Energy Solutions International Inc.)}{Calgary, Canada}
+\begin{itemize}
+  \item Programmed in a large-scale \textbf{C++ and Fortran} simulation codebase for real-time transient hydraulic modeling of oil and gas pipelines; object-oriented design with metaclasses backed by ObjectStore OODB.
+  \item Built tooling in \textbf{Python} (network sockets, file management, fail-over wrappers) and \textbf{Java Swing / AWT} (GUI for hydraulic visualization); tuned production leak-detection models to reduce false-alarm rates.
+\end{itemize}
+
+% ============ EDUCATION ============
+\resheading{Education}
+
+\noindent{\large\textbf{University of Alberta}} \hfill \textit{January 2012 -- December 2013}\\
+\textit{M.Sc., Mechanical Engineering} \hfill \textit{Edmonton, Canada \ \textbar\ GPA: 3.9 / 4.0}\par\vspace{2pt}
+\begin{itemize}
+  \item Dissertation: \textit{An open-source two-phase non-isothermal mathematical model of a polymer electrolyte membrane fuel cell.}
+  \item Mary Louise Imrie Graduate Student Award.
+\end{itemize}
+
+\vspace{4pt}
+\noindent{\large\textbf{Indian Institute of Technology Delhi (IIT Delhi)}} \hfill \textit{August 2005 -- May 2009}\\
+\textit{B.Tech., Mechanical Engineering} \hfill \textit{India \ \textbar\ GPA: 7.2 / 10}\par\vspace{2pt}
+
+% ============ EARLIER EXPERIENCE ============
+\resheading{Earlier Experience and Research}
+
+{\small
+\begin{itemize}
+  \item \textbf{Research Assistant, Energy Systems Design Lab, University of Alberta} (Jan 2012 -- Mar 2014) --- C++ finite-element model (30,000+ lines) for PEM fuel cell simulation; contributor to \href{https://www.openfcst.org}{openfcst.org}; Linux, MPI, CMake, TDD. Teaching Assistant for Thermo-Fluids and Energy Conversion.
+  \item \textbf{Design Engineer, Hindustan Aeronautics Limited} (Jun 2009 -- Dec 2011) --- Aircraft fuel-system design; CFD and FEA; CAD in Unigraphics / Teamcenter for a turbo-trainer aircraft program. AFTC training Gold Medallist.
+  \item \textbf{Intern, Whirlpool India} (2008) --- Skin-condenser redesign with MATLAB thermal modeling; 31\% efficiency improvement. \textbf{Undergraduate research} at IIT Delhi (coupled CFD/FEM, cascade refrigeration simulation) and FH D\"usseldorf, Germany (harvester CFD).
+\end{itemize}
+}
+
+% ============ CERTIFICATIONS / LEADERSHIP ============
+\resheading{Certifications and Leadership}
+
+{\small
+Pipeline Industry Professional Education (PIPE), 2014; AFTC Jalahalli --- Gold Medallist; V.P. Communications, Mech. Eng. GSA, U. of Alberta; House Rep., Lit. \& Dramatics Club, IIT Delhi.
+}
+
+% ============ PUBLICATIONS ============
+\resheading{Publications}
+
+\begin{enumerate}
+  \item {\small \textbf{Madhur Bhaiya}, Andreas Putz, Marc Secanell, ``Analysis of non-isothermal effects on polymer electrolyte fuel cell electrode assemblies'', {\it Electrochimica Acta}, 167:160-171, 2014.}
+  \item {\small \textbf{Madhur Bhaiya}, Andreas Putz, Marc Secanell, ``A comprehensive single-phase non-isothermal MEA model and analysis of non-isothermal effects'', {\it ECS Transactions}, 64(3):567-579, 2014.}
+  \item {\small Marc Secanell, Andreas Putz, Phil Wardlaw, Valentin Zingan, \textbf{Madhur Bhaiya}, Michael Moore, Jie Zhou, Chad Balen and Kailyn Domican, ``OpenFCST: An open-source mathematical modelling software for polymer electrolyte fuel cells'', {\it ECS Transactions}, 64(3):655-680, 2014.}
+\end{enumerate}
+
+{\small \textit{Additional papers:} lead/co-author across {\it Hydrogen + Fuel Cells 2013} (Vancouver, Canada), {\it National Conference on Refrigeration and Air Conditioning (NCRAC)} 2009 (IIT Madras, Chennai), {\it ACRECONF} 2009 (New Delhi), and a \href{http://fhdd.opus.hbz-nrw.de/volltexte/2008/423}{FH D\"usseldorf 2007 technical report} on combine-harvester CFD.}
+
+\end{document}
