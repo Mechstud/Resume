@@ -13,12 +13,12 @@
 %   - Plain-text URLs; \href display text == URL
 %   - Standard itemize/enumerate
 
-\documentclass[letterpaper,10pt]{article}
+\documentclass[a4paper,10pt]{article}
 
 \usepackage[T1]{fontenc}
 \usepackage{charter}
 \usepackage[protrusion=true,expansion=true]{microtype}
-\usepackage[left=0.6in,right=0.6in,top=0.5in,bottom=0.5in]{geometry}
+\usepackage[a4paper,left=0.6in,right=0.6in,top=0.5in,bottom=0.5in]{geometry}
 \usepackage[hidelinks]{hyperref}
 \usepackage{enumitem}
 \usepackage{xcolor}
@@ -32,18 +32,18 @@
 \raggedright
 \pagestyle{empty}
 \setlength{\parindent}{0pt}
-\linespread{1.05}
+\linespread{1.08}
 
 % Lists: small navy bullets, a little air between items
-\setlist[itemize]{leftmargin=1.1em, label={\color{accent}\small\textbullet}, itemsep=2.5pt, topsep=3pt, parsep=0pt}
+\setlist[itemize]{leftmargin=1.1em, label={\color{accent}\small\textbullet}, itemsep=3pt, topsep=3pt, parsep=0pt}
 \setlist[enumerate]{leftmargin=1.5em, itemsep=2pt, topsep=3pt, parsep=0pt}
 
 % Section heading: one line of bold navy text on a shaded band
 \newcommand{\resheading}[1]{%
-  \par\vspace{8pt}%
+  \par\vspace{10pt}%
   \noindent\colorbox{headbg}{\parbox{\dimexpr\linewidth-2\fboxsep\relax}{%
     \strut\color{accent}\large\bfseries #1}}\par%
-  \vspace{4pt}%
+  \vspace{5pt}%
 }
 
 % Role / school: title and dates on line one, organization and place on line two
@@ -69,7 +69,7 @@
 % ============ SUMMARY ============
 \resheading{Summary}
 
-Hands-on, problem-solving \textbf{technology architect and engineering leader (CTO)}, now integrating \textbf{AI research engineering} through an M.Tech in AI and Machine Learning at BITS Pilani. 15+ years building and running large-scale production systems, with deep relational-database expertise (Stack Overflow gold badge in MySQL); built engineering teams from scratch at two ventures. Graduate research in computational modeling (M.Sc., publications, open-source FEM solver). Currently building production applications on top of LLMs --- natural-language-to-SQL with RAG and evaluation, and AI agents that fix production bugs behind end-to-end test gates --- and halved servers through profiling-led optimization.
+Hands-on, problem-solving \textbf{technology architect and engineering leader (CTO)}, now integrating \textbf{AI research engineering} through an M.Tech in AI and Machine Learning at BITS Pilani. 15+ years building and running large-scale production systems, with deep relational-database expertise (Stack Overflow gold badge in MySQL); built engineering teams from scratch at two ventures. Graduate research in computational modeling (M.Sc., publications, open-source FEM solver). Building production applications on top of LLMs --- natural-language-to-SQL with RAG and evaluation, and AI agents that fix production bugs behind end-to-end test gates --- and driving infrastructure optimization through continuous profiling.
 
 % ============ EDUCATION ============
 \resheading{Education}
