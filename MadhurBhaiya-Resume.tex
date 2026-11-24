@@ -87,7 +87,7 @@ Hands-on, problem-solving \textbf{technology architect and engineering leader (C
 
 \begin{itemize}
   \item \textbf{AI / LLM Applications}: LLM agents and agentic workflows (Claude Code), automated program repair, retrieval-augmented generation (RAG), prompt engineering, few-shot selection, semantic caching, NL2SQL, evaluation harnesses, LLM guardrails, self-correction loops, Spec-Driven Development
-  \item \textbf{Machine Learning}: PyTorch, NumPy, pandas, deep neural networks
+  \item \textbf{Machine Learning}: PyTorch, scikit-learn, NumPy, pandas, Streamlit; CNNs, deep neural networks, SVM, logistic regression, kNN, decision trees, cross-validation, hyperparameter tuning
   \item \textbf{Research and Scientific Computing}: Mathematical modeling, numerical methods, finite-element methods (FEM), computational fluid dynamics (CFD), C++, MPI, MATLAB
   \item \textbf{Languages}: Python, Go (Golang), SQL, C++, PHP, JavaScript, TypeScript, Bash
   \item \textbf{Databases}: Percona Server for MySQL, MariaDB, Postgres, ProxySQL, Redis, Qdrant (vector DB); replication, backup/restore automation, Percona PMM, performance tuning
@@ -102,20 +102,19 @@ Hands-on, problem-solving \textbf{technology architect and engineering leader (C
 \resrole{Chief Technology Officer}{September 2020 -- Present}{KDK Softwares}{Jaipur, India}
 Tax-compliance software used by \textbf{25,000+ customers} across India.\par\vspace{2pt}
 \begin{itemize}
-  \item \textbf{Cloud-first transformation:} Started the cloud engineering practice in a desktop-only company and built \textbf{KDK's complete cloud suite} of \textbf{10+ tax-compliance SaaS products} from scratch; led the \textbf{PHP (Laravel) to Golang} migration.
+  \item \textbf{Cloud-first transformation:} Started the cloud engineering practice in a desktop-only company and built \textbf{KDK's complete cloud suite} of \textbf{10+ SaaS products} from scratch; led the \textbf{PHP to Golang} migration.
   \item \textbf{Agent-driven bug fixing:} Production log errors (Loki) and tickets trigger \textbf{Claude Code agents} (custom commands and skills) that reproduce, fix with a regression test and open a pull request; \textbf{end-to-end tests} gate every change, and humans decide and review. Cleared about \textbf{30 bugs a day} at launch; as code health improved, new bugs fell to about 4--5 a day.
   \item \textbf{Spec-Driven Development:} Made reviewable specs the starting point for LLM-generated code and tests across the team, moving AI use from ad-hoc prompting to a repeatable engineering practice.
-  \item \textbf{LLM features safe by design:} Shipped \textbf{natural-language-to-SQL} for non-technical users while treating the LLM as untrusted --- \textbf{RAG} over a schema catalog (Qdrant), few-shot selection, a semantic cache, self-correction, a Go policy guard (\textbf{sqlguard}) that enforces tenant isolation on every query, and \textbf{golden-set evaluation} of every prompt or model change.
+  \item \textbf{LLM features safe by design:} Shipped \textbf{natural-language-to-SQL} for non-technical users while treating the LLM as untrusted --- \textbf{RAG} over a schema catalog, few-shot selection, a semantic cache, self-correction, a Go policy guard enforcing tenant isolation on every query, and \textbf{golden-set evaluation} of every change.
   \item \textbf{Observability-driven performance:} Set up Grafana, Prometheus, Loki and continuous profiling (\textbf{Pyroscope, Go pprof}); profiling-led fixes to the heaviest code paths \textbf{halved servers at the same traffic}.
   \item \textbf{Everything as code:} Infrastructure on \textbf{AWS and E2E Networks} runs from \textbf{OpenTofu (Terraform)}, Ansible and Bash, with \textbf{no manual SSH} to servers.
-  \item \textbf{Databases without a DBA:} Run \textbf{10+ production Percona Server (MySQL) databases}, several at \textbf{multi-TB scale}, with no dedicated DBA. Automated backups, regular \textbf{restore drills} that prove backups actually work, and Percona Monitoring and Management (PMM) alerts; tuned database configs and queries for top performance on smaller servers.
-  \item \textbf{Stack:} Go, Python, PHP (Laravel), React, Percona Server (MySQL), ProxySQL, Redis, Qdrant, OpenAI, Claude Code, AWS, E2E Networks.
+  \item \textbf{Databases without a DBA:} Run \textbf{10+ production Percona Server (MySQL) databases}, several at \textbf{multi-TB scale}, with no dedicated DBA. Automated backups, regular \textbf{restore drills} and Percona PMM monitoring; tuned database configs and queries for top performance on smaller servers.
+  \item \textbf{Stack:} Go, Python, PHP (Laravel), React, Percona Server, ProxySQL, Redis, Qdrant, OpenAI, Claude Code.
 \end{itemize}
 
 \resrole{Co-Founder and Director}{April 2015 -- September 2020}{Wholesalebox.in}{Jaipur, India}
 \begin{itemize}
-  \item Built the full technology stack of \textbf{wholesalebox.in}, a B2B e-commerce platform (pre-Series A funded) --- web, Android and iOS apps, CRM, seller apps, retailer storefronts.
-  \item Scaled from zero to a \textbf{200+ employee team} with \textbf{40+ engineers}, serving thousands of retailers.
+  \item Built the full technology stack of \textbf{wholesalebox.in}, a pre-Series A funded B2B e-commerce platform (web, Android, iOS, CRM, seller apps), and scaled from zero to a \textbf{200+ employee team} with \textbf{40+ engineers}.
 \end{itemize}
 
 \resrole{Application Specialist, Remote Automation Solutions}{April 2014 -- July 2015}{Emerson (formerly Energy Solutions International Inc.)}{Calgary, Canada}
@@ -123,12 +122,20 @@ Tax-compliance software used by \textbf{25,000+ customers} across India.\par\vsp
   \item Developed a large \textbf{C++ and Fortran} real-time hydraulic simulation codebase for oil and gas pipelines; tuned production leak-detection models to cut false alarms; Python and Java tooling.
 \end{itemize}
 
+% ============ PROJECTS ============
+\resheading{Projects}
+
+\begin{itemize}
+  \item \textbf{CAPTCHA recognition with a CNN} (KDK Softwares, 2026) --- Built a 3-layer CNN in \textbf{PyTorch} for multi-class CAPTCHA character recognition (\textbf{98\%+ accuracy}), applying M.Tech deep-learning coursework.
+  \item \textbf{QSAR biodegradation classifier} (M.Tech, Machine Learning, 2026) --- Compared five classifiers on imbalanced UCI data with stratified cross-validation, judged on F1 and MCC; \textbf{SVM performed best} (F1 0.86, MCC 0.79 on test data). Streamlit app: \href{https://github.com/MadhurBhaiya-BITS/qsar-biodegradation-classifier}{github.com/MadhurBhaiya-BITS/qsar-biodegradation-classifier}
+\end{itemize}
+
 % ============ RESEARCH ============
 \resheading{Research Experience}
 
 \begin{itemize}
-  \item \textbf{Research Assistant, Energy Systems Design Lab, University of Alberta} (2012 -- 2014) --- Built a C++ finite-element model for PEM fuel-cell simulation; contributor to the open-source \href{https://www.openfcst.org}{openfcst.org} solver; Linux, MPI, CMake, test-driven development.
-  \item \textbf{Undergraduate research} --- IIT Delhi (coupled CFD/FEM, cascade refrigeration simulation) and FH D\"usseldorf, Germany (combine-harvester CFD).
+  \item \textbf{Research Assistant, Energy Systems Design Lab, University of Alberta} (2012 -- 2014) --- Built a C++ finite-element model for PEM fuel-cell simulation; contributor to the open-source \href{https://www.openfcst.org}{openfcst.org} solver.
+  \item \textbf{Undergraduate research} --- IIT Delhi (coupled CFD/FEM) and FH D\"usseldorf, Germany (harvester CFD).
 \end{itemize}
 
 % ============ PUBLICATIONS ============
@@ -137,17 +144,17 @@ Tax-compliance software used by \textbf{25,000+ customers} across India.\par\vsp
 \begin{enumerate}
   \item {\small \textbf{Madhur Bhaiya}, Andreas Putz, Marc Secanell, ``Analysis of non-isothermal effects on polymer electrolyte fuel cell electrode assemblies'', {\it Electrochimica Acta}, 167:160-171, 2014.}
   \item {\small \textbf{Madhur Bhaiya}, Andreas Putz, Marc Secanell, ``A comprehensive single-phase non-isothermal MEA model and analysis of non-isothermal effects'', {\it ECS Transactions}, 64(3):567-579, 2014.}
-  \item {\small Marc Secanell, Andreas Putz, Phil Wardlaw, Valentin Zingan, \textbf{Madhur Bhaiya}, Michael Moore, Jie Zhou, Chad Balen and Kailyn Domican, ``OpenFCST: An open-source mathematical modelling software for polymer electrolyte fuel cells'', {\it ECS Transactions}, 64(3):655-680, 2014.}
+  \item {\small Marc Secanell, Andreas Putz, Phil Wardlaw, Valentin Zingan, \textbf{Madhur Bhaiya}, et al., ``OpenFCST: An open-source mathematical modelling software for polymer electrolyte fuel cells'', {\it ECS Transactions}, 64(3):655-680, 2014.}
 \end{enumerate}
 
-{\small \textit{Additional papers:} {\it Hydrogen + Fuel Cells 2013} (Vancouver), {\it NCRAC} 2009 (IIT Madras), {\it ACRECONF} 2009 (New Delhi), and a \href{http://fhdd.opus.hbz-nrw.de/volltexte/2008/423}{FH D\"usseldorf 2007 technical report} on combine-harvester CFD.}
+{\small \textit{Additional papers:} {\it Hydrogen + Fuel Cells 2013}, {\it NCRAC} 2009, {\it ACRECONF} 2009, and a \href{http://fhdd.opus.hbz-nrw.de/volltexte/2008/423}{FH D\"usseldorf 2007 report}.}
 
 % ============ EARLIER EXPERIENCE ============
 \resheading{Earlier Experience}
 
 {\small
 \begin{itemize}
-  \item \textbf{Design Engineer, Hindustan Aeronautics Limited} (2009 -- 2011) --- Aircraft fuel-system design; CFD and FEA; AFTC Gold Medallist. \textbf{Intern, Whirlpool India} (2008) --- condenser redesign with MATLAB thermal modeling.
+  \item \textbf{Design Engineer, Hindustan Aeronautics Limited} (2009 -- 2011) --- Fuel-system design, CFD, FEA; AFTC Gold Medallist.
 \end{itemize}
 }
 
