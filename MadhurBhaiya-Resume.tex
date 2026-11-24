@@ -87,6 +87,7 @@ Hands-on, problem-solving \textbf{technology architect and engineering leader (C
 
 \begin{itemize}
   \item \textbf{AI / LLM Applications}: LLM agents and agentic workflows (Claude Code), automated program repair, retrieval-augmented generation (RAG), prompt engineering, few-shot selection, semantic caching, NL2SQL, evaluation harnesses, LLM guardrails, self-correction loops, Spec-Driven Development
+  \item \textbf{Machine Learning}: PyTorch, NumPy, pandas, deep neural networks
   \item \textbf{Research and Scientific Computing}: Mathematical modeling, numerical methods, finite-element methods (FEM), computational fluid dynamics (CFD), C++, MPI, MATLAB
   \item \textbf{Languages}: Python, Go (Golang), SQL, C++, PHP, JavaScript, TypeScript, Bash
   \item \textbf{Databases}: Percona Server for MySQL, MariaDB, Postgres, ProxySQL, Redis, Qdrant (vector DB); replication, backup/restore automation, Percona PMM, performance tuning
@@ -102,7 +103,7 @@ Hands-on, problem-solving \textbf{technology architect and engineering leader (C
 Tax-compliance software used by \textbf{25,000+ customers} across India.\par\vspace{2pt}
 \begin{itemize}
   \item \textbf{Cloud-first transformation:} Started the cloud engineering practice in a desktop-only company and built \textbf{KDK's complete cloud suite} of \textbf{10+ tax-compliance SaaS products} from scratch; led the \textbf{PHP (Laravel) to Golang} migration.
-  \item \textbf{Agent-driven bug fixing:} Production log errors (Loki) and tickets trigger \textbf{Claude Code agents} (custom commands and skills) that reproduce, fix with a regression test and open a pull request; \textbf{end-to-end tests} gate every change, and humans decide and review. Cleared $\sim$\textbf{30 bugs a day} at launch; as code health improved, new bugs fell to $\sim$4--5 a day.
+  \item \textbf{Agent-driven bug fixing:} Production log errors (Loki) and tickets trigger \textbf{Claude Code agents} (custom commands and skills) that reproduce, fix with a regression test and open a pull request; \textbf{end-to-end tests} gate every change, and humans decide and review. Cleared about \textbf{30 bugs a day} at launch; as code health improved, new bugs fell to about 4--5 a day.
   \item \textbf{Spec-Driven Development:} Made reviewable specs the starting point for LLM-generated code and tests across the team, moving AI use from ad-hoc prompting to a repeatable engineering practice.
   \item \textbf{LLM features safe by design:} Shipped \textbf{natural-language-to-SQL} for non-technical users while treating the LLM as untrusted --- \textbf{RAG} over a schema catalog (Qdrant), few-shot selection, a semantic cache, self-correction, a Go policy guard (\textbf{sqlguard}) that enforces tenant isolation on every query, and \textbf{golden-set evaluation} of every prompt or model change.
   \item \textbf{Observability-driven performance:} Set up Grafana, Prometheus, Loki and continuous profiling (\textbf{Pyroscope, Go pprof}); profiling-led fixes to the heaviest code paths \textbf{halved servers at the same traffic}.
