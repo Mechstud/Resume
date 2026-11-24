@@ -3,84 +3,90 @@
 % ATS-safe, single-column resume in LaTeX. Built to parse cleanly on
 % Greenhouse / Lever / Workday while still rendering well visually.
 %
-% Hard rules followed throughout:
-%   - No multi-column tables (tabular*/tabular) used for layout
-%   - No colorbox/minipage section headings
-%   - Dates kept on the same line as titles via \hfill (single column)
-%   - T1 fontenc + lmodern so copy-paste yields clean Unicode
+% Rules followed throughout:
+%   - Single column; no tables, minipages or text boxes used for layout
+%   - Section headings are one line of real text on a shaded band
+%     (colorbox around a one-line parbox); text extraction order is unchanged
+%   - Dates kept on the same line as titles via \hfill
+%   - T1 fontenc + Charter so copy-paste yields clean Unicode
+%   - No letter-spacing (some parsers split letter-spaced words)
 %   - Plain-text URLs; \href display text == URL
-%   - Standard itemize/enumerate; no spacing tricks that drop blank lines
+%   - Standard itemize/enumerate
 
-\documentclass[letterpaper,11pt]{article}
+\documentclass[letterpaper,10pt]{article}
 
-\usepackage[empty]{fullpage}
 \usepackage[T1]{fontenc}
-\usepackage{lmodern}
+\usepackage{charter}
+\usepackage[protrusion=true,expansion=true]{microtype}
+\usepackage[left=0.6in,right=0.6in,top=0.5in,bottom=0.5in]{geometry}
 \usepackage[hidelinks]{hyperref}
 \usepackage{enumitem}
+\usepackage{xcolor}
 
-% Margins
-\addtolength{\oddsidemargin}{-0.5in}
-\addtolength{\evensidemargin}{-0.5in}
-\addtolength{\textwidth}{1.0in}
-\addtolength{\topmargin}{-0.5in}
-\addtolength{\textheight}{1.0in}
+% Palette
+\definecolor{accent}{RGB}{31,56,100}    % navy: headings, titles
+\definecolor{headbg}{RGB}{228,235,245}  % soft blue-gray band
+\definecolor{muted}{RGB}{95,99,104}     % dates, locations
+\definecolor{body}{RGB}{33,33,33}       % body text
 
-\raggedbottom
 \raggedright
 \pagestyle{empty}
+\setlength{\parindent}{0pt}
+\linespread{1.05}
 
-% Compact list spacing without breaking parser blank-line separators
-\setlist[itemize]{leftmargin=*, itemsep=1pt, topsep=2pt, parsep=0pt}
-\setlist[enumerate]{leftmargin=*, itemsep=1pt, topsep=2pt, parsep=0pt}
+% Lists: small navy bullets, a little air between items
+\setlist[itemize]{leftmargin=1.1em, label={\color{accent}\small\textbullet}, itemsep=2.5pt, topsep=3pt, parsep=0pt}
+\setlist[enumerate]{leftmargin=1.5em, itemsep=2pt, topsep=3pt, parsep=0pt}
 
-% Section heading: plain bold text + underline rule. ATS-safe.
+% Section heading: one line of bold navy text on a shaded band
 \newcommand{\resheading}[1]{%
-  \vspace{8pt}%
-  {\large\textbf{#1}}\par%
-  \vspace{2pt}\hrule\vspace{4pt}%
+  \par\vspace{8pt}%
+  \noindent\colorbox{headbg}{\parbox{\dimexpr\linewidth-2\fboxsep\relax}{%
+    \strut\color{accent}\large\bfseries #1}}\par%
+  \vspace{4pt}%
 }
 
-% Role line: title left, dates right via \hfill (single column, not a table)
+% Role / school: title and dates on line one, organization and place on line two
 \newcommand{\resrole}[4]{%
-  \textbf{#1} \hfill #2 \\%
-  \textit{#3} \hfill \textit{#4}\par\vspace{2pt}%
+  {\color{accent}\bfseries #1}\hfill{\color{muted}#2}\\%
+  {\itshape #3}\hfill{\color{muted}\itshape #4}\par\vspace{1pt}%
 }
+
+% Space between consecutive roles or schools
+\newcommand{\resgap}{\vspace{6pt}}
 
 \begin{document}
+\color{body}
 
 % ============ HEADER ============
 \begin{center}
-{\LARGE\textbf{MADHUR BHAIYA}}\\[4pt]
-Jaipur, India\\
-+91 72210 63279 / +91 93529 87598 \ \textbar\ \href{mailto:madhurbhaiya@gmail.com}{madhurbhaiya@gmail.com} \ \textbar\ \href{https://linkedin.com/in/madhurbhaiya}{linkedin.com/in/madhurbhaiya}\\
-\href{https://stackoverflow.com/users/2469308/madhur-bhaiya}{stackoverflow.com/users/2469308/madhur-bhaiya}
+{\fontsize{22}{26}\selectfont\bfseries\color{accent}Madhur Bhaiya}\\[5pt]
+{\color{muted}Jaipur, India \ \textbar\ +91 72210 63279 / +91 93529 87598 \ \textbar\ \href{mailto:madhurbhaiya@gmail.com}{madhurbhaiya@gmail.com}}\\[1pt]
+{\color{muted}\href{https://linkedin.com/in/madhurbhaiya}{linkedin.com/in/madhurbhaiya} \ \textbar\ \href{https://stackoverflow.com/users/2469308/madhur-bhaiya}{stackoverflow.com/users/2469308/madhur-bhaiya}}
 \end{center}
+\vspace{-6pt}
 
 % ============ SUMMARY ============
 \resheading{Summary}
 
-Hands-on, problem-solving \textbf{technology architect and engineering leader (CTO)}, now integrating \textbf{AI research engineering} through an \textbf{M.Tech in AI and Machine Learning at BITS Pilani}. 15+ years building and running large-scale production systems, with deep relational-database expertise (\textbf{Stack Overflow gold badge in MySQL}); built engineering teams from scratch at two ventures. Graduate research in computational modeling (M.Sc., publications, open-source FEM solver). Currently building \textbf{production applications on top of LLMs} --- natural-language-to-SQL with RAG and evaluation, and AI agents that fix production bugs behind end-to-end test gates --- and halved servers through profiling-led optimization.
+Hands-on, problem-solving \textbf{technology architect and engineering leader (CTO)}, now integrating \textbf{AI research engineering} through an M.Tech in AI and Machine Learning at BITS Pilani. 15+ years building and running large-scale production systems, with deep relational-database expertise (Stack Overflow gold badge in MySQL); built engineering teams from scratch at two ventures. Graduate research in computational modeling (M.Sc., publications, open-source FEM solver). Currently building production applications on top of LLMs --- natural-language-to-SQL with RAG and evaluation, and AI agents that fix production bugs behind end-to-end test gates --- and halved servers through profiling-led optimization.
 
 % ============ EDUCATION ============
 \resheading{Education}
 
-\noindent{\large\textbf{Birla Institute of Technology and Science (BITS), Pilani}} \hfill \textit{August 2026 -- April 2028 (expected)}\\
-\textit{M.Tech., Artificial Intelligence and Machine Learning (Work Integrated Learning Programme)} \hfill \textit{India}\par\vspace{2pt}
+\resrole{Birla Institute of Technology and Science (BITS), Pilani}{August 2026 -- April 2028 (expected)}{M.Tech., Artificial Intelligence and Machine Learning (Work Integrated Learning Programme)}{India}
 \begin{itemize}
   \item Coursework: Deep Neural Networks, Machine Learning.
 \end{itemize}
+\resgap
 
-\vspace{4pt}
-\noindent{\large\textbf{University of Alberta}} \hfill \textit{January 2012 -- December 2013}\\
-\textit{M.Sc., Mechanical Engineering (computational modeling)} \hfill \textit{Edmonton, Canada} \ \textbar\ \textbf{GPA: 3.9 / 4.0}\par\vspace{2pt}
+\resrole{University of Alberta}{January 2012 -- December 2013}{M.Sc., Mechanical Engineering (computational modeling)}{Edmonton, Canada \ \textbar\ {\upshape\bfseries\color{body}GPA: 3.9 / 4.0}}
 \begin{itemize}
   \item Dissertation: \textit{An open-source two-phase non-isothermal mathematical model of a polymer electrolyte membrane fuel cell.} Mary Louise Imrie Graduate Student Award.
 \end{itemize}
+\resgap
 
-\vspace{4pt}
-\noindent{\large\textbf{Indian Institute of Technology Delhi (IIT Delhi)}} \hfill \textit{August 2005 -- May 2009}\\
-\textit{B.Tech., Mechanical Engineering} \hfill \textit{India \ \textbar\ GPA: 7.2 / 10}\par\vspace{2pt}
+\resrole{Indian Institute of Technology Delhi (IIT Delhi)}{August 2005 -- May 2009}{B.Tech., Mechanical Engineering}{India \ \textbar\ GPA: 7.2 / 10}
 
 % ============ SKILLS ============
 \resheading{Skills}
@@ -100,62 +106,64 @@ Hands-on, problem-solving \textbf{technology architect and engineering leader (C
 \resheading{Experience}
 
 \resrole{Chief Technology Officer}{September 2020 -- Present}{KDK Softwares}{Jaipur, India}
-Tax-compliance software used by \textbf{25,000+ customers} across India.\par\vspace{2pt}
+Tax-compliance software used by 25,000+ customers across India.
 \begin{itemize}
-  \item \textbf{Cloud-first transformation:} Started the cloud engineering practice in a desktop-only company and built \textbf{KDK's complete cloud suite} of \textbf{10+ SaaS products} from scratch; led the \textbf{PHP to Golang} migration.
-  \item \textbf{Agent-driven bug fixing:} Production log errors (Loki) and tickets trigger \textbf{Claude Code agents} (custom commands and skills) that reproduce, fix with a regression test and open a pull request; \textbf{end-to-end tests} gate every change, and humans decide and review. Cleared about \textbf{30 bugs a day} at launch; as code health improved, new bugs fell to about 4--5 a day.
+  \item \textbf{Cloud-first transformation:} Started the cloud engineering practice in a desktop-only company and built KDK's complete cloud suite of 10+ SaaS products from scratch; led the PHP to Golang migration.
+  \item \textbf{Agent-driven bug fixing:} Production log errors (Loki) and tickets trigger Claude Code agents (custom commands and skills) that reproduce, fix with a regression test and open a pull request; end-to-end tests gate every change, and humans decide and review. Cleared about 30 bugs a day at launch; as code health improved, new bugs fell to about 4--5 a day.
   \item \textbf{Spec-Driven Development:} Made reviewable specs the starting point for LLM-generated code and tests across the team, moving AI use from ad-hoc prompting to a repeatable engineering practice.
-  \item \textbf{LLM features safe by design:} Shipped \textbf{natural-language-to-SQL} for non-technical users while treating the LLM as untrusted --- \textbf{RAG} over a schema catalog, few-shot selection, a semantic cache, self-correction, a Go policy guard enforcing tenant isolation on every query, and \textbf{golden-set evaluation} of every change.
-  \item \textbf{Observability-driven performance:} Set up Grafana, Prometheus, Loki and continuous profiling (\textbf{Pyroscope, Go pprof}); profiling-led fixes to the heaviest code paths \textbf{halved servers at the same traffic}.
-  \item \textbf{Everything as code:} Infrastructure on \textbf{AWS and E2E Networks} runs from \textbf{OpenTofu (Terraform)}, Ansible and Bash, with \textbf{no manual SSH} to servers.
-  \item \textbf{Databases without a DBA:} Run \textbf{10+ production Percona Server (MySQL) databases}, several at \textbf{multi-TB scale}, with no dedicated DBA. Automated backups, regular \textbf{restore drills} and Percona PMM monitoring; tuned database configs and queries for top performance on smaller servers.
+  \item \textbf{LLM features safe by design:} Shipped natural-language-to-SQL for non-technical users while treating the LLM as untrusted --- RAG over a schema catalog, few-shot selection, a semantic cache, self-correction, a Go policy guard enforcing tenant isolation on every query, and golden-set evaluation of every change.
+  \item \textbf{Observability-driven performance:} Set up Grafana, Prometheus, Loki and continuous profiling (Pyroscope, Go pprof); profiling-led fixes to the heaviest code paths halved servers at the same traffic.
+  \item \textbf{Everything as code:} Infrastructure on AWS and E2E Networks runs from OpenTofu (Terraform), Ansible and Bash, with no manual SSH to servers.
+  \item \textbf{Databases without a DBA:} Run 10+ production Percona Server (MySQL) databases, several at multi-TB scale, with no dedicated DBA. Automated backups, regular restore drills and Percona PMM monitoring; tuned database configs and queries for top performance on smaller servers.
   \item \textbf{Stack:} Go, Python, PHP (Laravel), React, Percona Server, ProxySQL, Redis, Qdrant, OpenAI, Claude Code.
 \end{itemize}
+\resgap
 
 \resrole{Co-Founder and Director}{April 2015 -- September 2020}{Wholesalebox.in}{Jaipur, India}
 \begin{itemize}
-  \item Built the full technology stack of \textbf{wholesalebox.in}, a pre-Series A funded B2B e-commerce platform (web, Android, iOS, CRM, seller apps), and scaled from zero to a \textbf{200+ employee team} with \textbf{40+ engineers}.
+  \item Built the full technology stack of wholesalebox.in, a pre-Series A funded B2B e-commerce platform (web, Android, iOS, CRM, seller apps), and scaled from zero to a 200+ employee team with 40+ engineers.
 \end{itemize}
+\resgap
 
 \resrole{Application Specialist, Remote Automation Solutions}{April 2014 -- July 2015}{Emerson (formerly Energy Solutions International Inc.)}{Calgary, Canada}
 \begin{itemize}
-  \item Developed a large \textbf{C++ and Fortran} real-time hydraulic simulation codebase for oil and gas pipelines; tuned production leak-detection models to cut false alarms; Python and Java tooling.
+  \item Developed a large C++ and Fortran real-time hydraulic simulation codebase for oil and gas pipelines; tuned production leak-detection models to cut false alarms; Python and Java tooling.
 \end{itemize}
 
 % ============ PROJECTS ============
 \resheading{Projects}
 
 \begin{itemize}
-  \item \textbf{CAPTCHA recognition with a CNN} (KDK Softwares, 2026) --- Built a 3-layer CNN in \textbf{PyTorch} for multi-class CAPTCHA character recognition (\textbf{98\%+ accuracy}), applying M.Tech deep-learning coursework.
-  \item \textbf{QSAR biodegradation classifier} (M.Tech, Machine Learning, 2026) --- Compared five classifiers on imbalanced UCI data with stratified cross-validation, judged on F1 and MCC; \textbf{SVM performed best} (F1 0.86, MCC 0.79 on test data). Streamlit app: \href{https://github.com/MadhurBhaiya-BITS/qsar-biodegradation-classifier}{github.com/MadhurBhaiya-BITS/qsar-biodegradation-classifier}
+  \item \textbf{CAPTCHA recognition with a CNN} {\color{muted}(KDK Softwares, 2026)} --- Built a 3-layer CNN in PyTorch for multi-class CAPTCHA character recognition (98\%+ accuracy), applying M.Tech deep-learning coursework.
+  \item \textbf{QSAR biodegradation classifier} {\color{muted}(M.Tech, Machine Learning, 2026)} --- Compared five classifiers on imbalanced UCI data with stratified cross-validation, judged on F1 and MCC; SVM performed best (F1 0.86, MCC 0.79 on test data). Streamlit app: \href{https://github.com/MadhurBhaiya-BITS/qsar-biodegradation-classifier}{github.com/MadhurBhaiya-BITS/qsar-biodegradation-classifier}
 \end{itemize}
 
 % ============ RESEARCH ============
 \resheading{Research Experience}
 
 \begin{itemize}
-  \item \textbf{Research Assistant, Energy Systems Design Lab, University of Alberta} (2012 -- 2014) --- Built a C++ finite-element model for PEM fuel-cell simulation; contributor to the open-source \href{https://www.openfcst.org}{openfcst.org} solver.
+  \item \textbf{Research Assistant, Energy Systems Design Lab, University of Alberta} {\color{muted}(2012 -- 2014)} --- Built a C++ finite-element model for PEM fuel-cell simulation; contributor to the open-source \href{https://www.openfcst.org}{openfcst.org} solver.
   \item \textbf{Undergraduate research} --- IIT Delhi (coupled CFD/FEM) and FH D\"usseldorf, Germany (harvester CFD).
 \end{itemize}
 
 % ============ PUBLICATIONS ============
 \resheading{Publications}
 
+{\small
 \begin{enumerate}
-  \item {\small \textbf{Madhur Bhaiya}, Andreas Putz, Marc Secanell, ``Analysis of non-isothermal effects on polymer electrolyte fuel cell electrode assemblies'', {\it Electrochimica Acta}, 167:160-171, 2014.}
-  \item {\small \textbf{Madhur Bhaiya}, Andreas Putz, Marc Secanell, ``A comprehensive single-phase non-isothermal MEA model and analysis of non-isothermal effects'', {\it ECS Transactions}, 64(3):567-579, 2014.}
-  \item {\small Marc Secanell, Andreas Putz, Phil Wardlaw, Valentin Zingan, \textbf{Madhur Bhaiya}, et al., ``OpenFCST: An open-source mathematical modelling software for polymer electrolyte fuel cells'', {\it ECS Transactions}, 64(3):655-680, 2014.}
+  \item \textbf{Madhur Bhaiya}, Andreas Putz, Marc Secanell, ``Analysis of non-isothermal effects on polymer electrolyte fuel cell electrode assemblies'', \textit{Electrochimica Acta}, 167:160-171, 2014.
+  \item \textbf{Madhur Bhaiya}, Andreas Putz, Marc Secanell, ``A comprehensive single-phase non-isothermal MEA model and analysis of non-isothermal effects'', \textit{ECS Transactions}, 64(3):567-579, 2014.
+  \item Marc Secanell, Andreas Putz, Phil Wardlaw, Valentin Zingan, \textbf{Madhur Bhaiya}, et al., ``OpenFCST: An open-source mathematical modelling software for polymer electrolyte fuel cells'', \textit{ECS Transactions}, 64(3):655-680, 2014.
 \end{enumerate}
-
-{\small \textit{Additional papers:} {\it Hydrogen + Fuel Cells 2013}, {\it NCRAC} 2009, {\it ACRECONF} 2009, and a \href{http://fhdd.opus.hbz-nrw.de/volltexte/2008/423}{FH D\"usseldorf 2007 report}.}
+\vspace{3pt}
+\textit{Additional papers:} \textit{Hydrogen + Fuel Cells 2013}, \textit{NCRAC} 2009, \textit{ACRECONF} 2009, and a \href{http://fhdd.opus.hbz-nrw.de/volltexte/2008/423}{FH D\"usseldorf 2007 report}.\par
+}
 
 % ============ EARLIER EXPERIENCE ============
 \resheading{Earlier Experience}
 
-{\small
 \begin{itemize}
-  \item \textbf{Design Engineer, Hindustan Aeronautics Limited} (2009 -- 2011) --- Fuel-system design, CFD, FEA; AFTC Gold Medallist.
+  \item \textbf{Design Engineer, Hindustan Aeronautics Limited} {\color{muted}(2009 -- 2011)} --- Fuel-system design, CFD, FEA; AFTC Gold Medallist.
 \end{itemize}
-}
 
 \end{document}
