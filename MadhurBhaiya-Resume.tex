@@ -79,7 +79,7 @@ Hands-on, problem-solving \textbf{technology architect and engineering leader (C
 
 \vspace{4pt}
 \noindent{\large\textbf{Indian Institute of Technology Delhi (IIT Delhi)}} \hfill \textit{August 2005 -- May 2009}\\
-\textit{B.Tech., Mechanical Engineering} \hfill \textit{India} \ \textbar\ \textbf{GPA: 7.2 / 10}\par\vspace{2pt}
+\textit{B.Tech., Mechanical Engineering} \hfill \textit{India \ \textbar\ GPA: 7.2 / 10}\par\vspace{2pt}
 
 % ============ SKILLS ============
 \resheading{Skills}
@@ -98,14 +98,12 @@ Hands-on, problem-solving \textbf{technology architect and engineering leader (C
 
 \resrole{Chief Technology Officer}{September 2020 -- Present}{KDK Softwares}{Jaipur, India}
 \begin{itemize}
-  \item Designed and shipped a \textbf{natural-language-to-SQL} system for a multi-tenant tax-compliance SaaS --- an LLM-powered interface that lets non-technical users query their tax data. Owned it end to end: architecture, prompt design, retrieval pipeline, security/policy layer, evaluation, rollout.
-  \item Built a \textbf{schema catalog} as the policy-and-context source of truth (tenant scopes, column metadata, value enumerations, join hints); per-request \textbf{RAG over Qdrant} (top-K + foreign-key anchor expansion) cuts the schema prompt from $\sim$12k to $\sim$3--5k tokens and keeps the static prefix cacheable.
-  \item Authored \textbf{sqlguard}, a Go AST-walker (vitess sqlparser) that enforces 12+ policy rules on every LLM-generated query --- SELECT-only, table whitelist, \textbf{tenant-isolation checks} through JOINs, sensitive-column blocks, LIMIT and time caps. Treats the LLM as untrusted.
-  \item Implemented \textbf{few-shot exemplar selection}, a per-tenant \textbf{semantic question-to-SQL cache} (promoted from user feedback, re-validated on every hit) and a \textbf{self-correction loop}. Built an \textbf{evaluation harness} that measures every prompt/model change against a frozen golden set.
+  \item Founded the cloud engineering practice in a previously desktop-only company and built \textbf{KDK's complete cloud suite} --- \textbf{10+ tax-compliance SaaS products} from scratch, now serving \textbf{10,000+ paying customers} across India. Led the \textbf{PHP (Laravel) to Golang} backend migration at production scale.
   \item \textbf{LLM agents for automated bug fixing:} Built a Claude Code workflow (custom commands and skills) where production log errors (Loki) and tickets automatically trigger agents to triage, reproduce, fix with a regression test, and open a pull request. CI gates every change on rigorous end-to-end tests; humans decide on changes and review code. Fixed $\sim$\textbf{30 bugs per day} at first; as code health improved, new bugs fell to $\sim$4--5 per day, fixed as reported. Extends the \textbf{Spec-Driven Development} practice I rolled out to 25 engineers.
+  \item \textbf{Natural-language-to-SQL on LLMs:} Shipped an interface that lets non-technical users query their tax data in plain language --- \textbf{RAG over Qdrant} on a schema catalog (prompt cut from $\sim$12k to $\sim$3--5k tokens), few-shot exemplar selection, a semantic cache, a self-correction loop, and an \textbf{evaluation harness} that scores every prompt/model change against a golden set. Every generated query passes \textbf{sqlguard}, a Go AST-walker enforcing 12+ policy rules including \textbf{tenant isolation}.
   \item \textbf{Observability and performance:} Built the monitoring stack --- Grafana dashboards and alerts, Prometheus metrics, Loki logs, and continuous profiling with \textbf{Pyroscope and Go pprof}. Profiling-led optimization of the heaviest code paths cut servers by \textbf{50\% at the same traffic}.
   \item \textbf{Infrastructure as code:} Automated infrastructure across \textbf{AWS and E2E Networks} (private cloud) with \textbf{OpenTofu (Terraform)}, Ansible playbooks and Bash. Provisioning, configuration and deploys run from code; \textbf{no manual SSH} to production servers.
-  \item Founded the cloud SaaS engineering practice in a previously desktop-only company; built \textbf{five tax-compliance SaaS products} from scratch (ExpressGST, ExpressTDS, ExpressITR, ExpressReco, SpectrumCloud) now serving \textbf{10,000+ paying customers} across India. Led the \textbf{PHP (Laravel) to Golang} backend migration at production scale.
+  \item \textbf{Stack:} Go, Python, PHP (Laravel), React, MySQL and ProxySQL (query optimization, replication), Qdrant, OpenAI, Claude Code, AWS, E2E Networks.
 \end{itemize}
 
 \resrole{Co-Founder and Director}{April 2015 -- September 2020}{Wholesalebox.in}{Jaipur, India}
