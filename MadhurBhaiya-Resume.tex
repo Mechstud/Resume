@@ -88,7 +88,7 @@ Hands-on, problem-solving \textbf{technology architect and engineering leader (C
   \item \textbf{AI / LLM Applications}: LLM agents and agentic workflows (Claude Code), automated program repair, retrieval-augmented generation (RAG), prompt engineering, few-shot selection, semantic caching, NL2SQL, evaluation harnesses, LLM guardrails, self-correction loops, Spec-Driven Development
   \item \textbf{Research and Scientific Computing}: Mathematical modeling, numerical methods, finite-element methods (FEM), computational fluid dynamics (CFD), C++, MPI, MATLAB
   \item \textbf{Languages}: Python, Go (Golang), SQL, C++, PHP, JavaScript, TypeScript, Bash
-  \item \textbf{Systems and Data}: Large-scale system design, distributed systems, Postgres, MySQL, ProxySQL, Qdrant (vector DB), Elasticsearch, Apache SOLR, RabbitMQ, ReactJS
+  \item \textbf{Systems and Data}: Large-scale system design, distributed systems, Postgres, MySQL, ProxySQL, Redis, Qdrant (vector DB), Elasticsearch, Apache SOLR, RabbitMQ, ReactJS
   \item \textbf{Observability and Performance}: Grafana, Prometheus, Loki, Pyroscope (continuous profiling), Go pprof
   \item \textbf{Infrastructure and DevOps}: AWS, E2E Networks (private cloud), OpenTofu / Terraform (infrastructure as code), Ansible, Bash automation, Linux, Nginx, Apache, Jenkins, GitHub Actions, CI/CD, Git
 \end{itemize}
@@ -98,12 +98,12 @@ Hands-on, problem-solving \textbf{technology architect and engineering leader (C
 
 \resrole{Chief Technology Officer}{September 2020 -- Present}{KDK Softwares}{Jaipur, India}
 \begin{itemize}
-  \item Founded the cloud engineering practice in a previously desktop-only company and built \textbf{KDK's complete cloud suite} --- \textbf{10+ tax-compliance SaaS products} from scratch, now serving \textbf{10,000+ paying customers} across India. Led the \textbf{PHP (Laravel) to Golang} backend migration at production scale.
+  \item Founded the cloud engineering practice in a previously desktop-only company and built \textbf{KDK's complete cloud suite} --- \textbf{10+ tax-compliance SaaS products} from scratch, now serving \textbf{15,000+ of KDK's 25,000+ paying customers} across India. Led the \textbf{PHP (Laravel) to Golang} backend migration at production scale.
   \item \textbf{LLM agents for automated bug fixing:} Built a Claude Code workflow (custom commands and skills) where production log errors (Loki) and tickets automatically trigger agents to triage, reproduce, fix with a regression test, and open a pull request. CI gates every change on rigorous end-to-end tests; humans decide on changes and review code. Fixed $\sim$\textbf{30 bugs per day} at first; as code health improved, new bugs fell to $\sim$4--5 per day, fixed as reported. Extends the \textbf{Spec-Driven Development} practice I rolled out to 25 engineers.
   \item \textbf{Natural-language-to-SQL on LLMs:} Shipped an interface that lets non-technical users query their tax data in plain language --- \textbf{RAG over Qdrant} on a schema catalog (prompt cut from $\sim$12k to $\sim$3--5k tokens), few-shot exemplar selection, a semantic cache, a self-correction loop, and an \textbf{evaluation harness} that scores every prompt/model change against a golden set. Every generated query passes \textbf{sqlguard}, a Go AST-walker enforcing 12+ policy rules including \textbf{tenant isolation}.
   \item \textbf{Observability and performance:} Built the monitoring stack --- Grafana dashboards and alerts, Prometheus metrics, Loki logs, and continuous profiling with \textbf{Pyroscope and Go pprof}. Profiling-led optimization of the heaviest code paths cut servers by \textbf{50\% at the same traffic}.
   \item \textbf{Infrastructure as code:} Automated infrastructure across \textbf{AWS and E2E Networks} (private cloud) with \textbf{OpenTofu (Terraform)}, Ansible playbooks and Bash. Provisioning, configuration and deploys run from code; \textbf{no manual SSH} to production servers.
-  \item \textbf{Stack:} Go, Python, PHP (Laravel), React, MySQL and ProxySQL (query optimization, replication), Qdrant, OpenAI, Claude Code, AWS, E2E Networks.
+  \item \textbf{Stack:} Go, Python, PHP (Laravel), React, MySQL and ProxySQL (query optimization, replication), Redis, Qdrant, OpenAI, Claude Code, AWS, E2E Networks.
 \end{itemize}
 
 \resrole{Co-Founder and Director}{April 2015 -- September 2020}{Wholesalebox.in}{Jaipur, India}
